@@ -42,7 +42,6 @@ const io = require("socket.io")(server, {
   pingTimeout: 120000,
   cors: {
     origin: "*", //development
-    // origin: "https://textalot.herokuapp.com", //deployment
     credentials: true,
   },
 });
