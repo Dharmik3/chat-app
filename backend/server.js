@@ -32,6 +32,10 @@ app.use("/api/message", messageRoutes);
 app.use(notFound);
 app.use(errorHandler);
  
+app.get('/', (req, res) => {
+  //console.log('hello from server');
+  res.send('Api running');
+}) 
 
 
 const PORT = process.env.PORT || 5000;
