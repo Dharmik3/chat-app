@@ -41,7 +41,7 @@ const server = app.listen(PORT, console.log(`Server started on port ${PORT}`.yel
 const io = require("socket.io")(server, {
   pingTimeout: 120000,
   cors: {
-    origin: "http://localhost:3001", //development
+    origin: "*", //development
     // origin: "https://textalot.herokuapp.com", //deployment
     credentials: true,
   },
@@ -85,16 +85,3 @@ io.on("connection", (socket) => {
 
 });  
 
-////////////////////////////////////////////////////////////////
-////////////////////////////////
-//call join to subscribe the socket to a given channel/room
-
-/* io.on("connection", (socket) => {
-  socket.join("some room");
-}); */
-
-//broadcast to a room from a given socket --  every socket in the room excluding the sender will get the event.
-
-/* io.on("connection", (socket) => {
-  socket.to("some room").emit("some event");
-}); */

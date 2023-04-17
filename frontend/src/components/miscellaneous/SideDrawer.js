@@ -20,7 +20,7 @@ import {
 } from "@chakra-ui/modal";
 import { Button } from "@chakra-ui/button";
 import { Tooltip } from "@chakra-ui/tooltip";
-import {  ChevronDownIcon } from "@chakra-ui/icons";
+import { ChevronDownIcon } from "@chakra-ui/icons";
 import { Avatar } from "@chakra-ui/avatar";
 import axios from "axios";
 import { useToast } from "@chakra-ui/toast";
@@ -48,7 +48,7 @@ const SideDrawer = () => {
     navigate("/");
   };
 
-  const handleSearch = async() => {
+  const handleSearch = async () => {
 
     if (!search) {
       toast({
@@ -65,10 +65,10 @@ const SideDrawer = () => {
       setLoading(true);
 
       const config = {
-        headers: { Authorization: `Bearer ${user.token}`}
+        headers: { Authorization: `Bearer ${user.token}` }
       };
 
-      const { data } = await axios.get(`http://localhost:5003/api/user?search=${search}`, config);
+      const { data } = await axios.get(`/api/user?search=${search}`, config);
       //console.log(data, 'searchQuerry keyword response data');
 
       setLoading(false);
@@ -89,7 +89,7 @@ const SideDrawer = () => {
   };
 
 
-  
+
 
   const accessChatCreateChat = async (userId) => {
     //console.log(userId); id of selected user
@@ -102,9 +102,9 @@ const SideDrawer = () => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.post(`http://localhost:5003/api/chat`, { userId }, config);
+      const { data } = await axios.post(`/api/chat`, { userId }, config);
 
-      if (!chats.find((chat) => chat._id === data._id)) setChats([data, ...chats]); 
+      if (!chats.find((chat) => chat._id === data._id)) setChats([data, ...chats]);
       //already existing check clause //newly created chat above the rest
 
       setSelectedChat(data);
@@ -141,12 +141,12 @@ const SideDrawer = () => {
         color="black"
       >
         <Tooltip label="Search Users to chat" hasArrow placement="bottom-end">
-          <Button variant="ghost" bg ='blue.700' onClick={onOpen} color="white"
-            _hover={{ background: "blue.800", color:"yellow.400" }} _active={{ background: "blue.800", color:"yellow.400" }}>
-              <i className="fas fa-search"></i>
-              <Text d={{ base: "none", md: "flex" }} px={4} fontWeight="bold">
-                Search User
-              </Text>
+          <Button variant="ghost" bg='blue.700' onClick={onOpen} color="white"
+            _hover={{ background: "blue.800", color: "yellow.400" }} _active={{ background: "blue.800", color: "yellow.400" }}>
+            <i className="fas fa-search"></i>
+            <Text d={{ base: "none", md: "flex" }} px={4} fontWeight="bold">
+              Search User
+            </Text>
           </Button>
         </Tooltip>
 
@@ -156,7 +156,7 @@ const SideDrawer = () => {
 
         <div>
           <Menu>
-           
+
             <MenuList pl={2}>
               {!notification.length && "No New Messages"}
               {notification.map((notif) => (
@@ -175,18 +175,18 @@ const SideDrawer = () => {
             </MenuList>
           </Menu>
           <Menu>
-            <MenuButton as={Button} bg="blue.700"  rightIcon={<ChevronDownIcon/>}  
-              _hover={{background: "blue.800", color:"yellow.400"}} _active={{background: "blue.800", color:"yellow.400"}}>
-              <Avatar size="sm" cursor="pointer" name={user.name} borderColor="black" borderWidth="2px" bg="yellow.400" color="black"/>
+            <MenuButton as={Button} bg="blue.700" rightIcon={<ChevronDownIcon />}
+              _hover={{ background: "blue.800", color: "yellow.400" }} _active={{ background: "blue.800", color: "yellow.400" }}>
+              <Avatar size="sm" cursor="pointer" name={user.name} borderColor="black" borderWidth="2px" bg="yellow.400" color="black" />
             </MenuButton>
-            <MenuList bg = "blue.600" borderColor="black" borderWidth="2px">
+            <MenuList bg="blue.600" borderColor="black" borderWidth="2px">
               <ProfileModal user={user}>
-                <MenuItem fontWeight="bold" color="black" _hover={{background: "yellow.400"}}  >
+                <MenuItem fontWeight="bold" color="black" _hover={{ background: "yellow.400" }}  >
                   My Profile
                 </MenuItem>{" "}
               </ProfileModal>
-              <MenuDivider/>
-              <MenuItem fontWeight="bold" color="black" onClick={logoutHandler} _hover={{background: "yellow.400"}}>
+              <MenuDivider />
+              <MenuItem fontWeight="bold" color="black" onClick={logoutHandler} _hover={{ background: "yellow.400" }}>
                 Logout
               </MenuItem>
             </MenuList>
@@ -217,7 +217,7 @@ const SideDrawer = () => {
                   handleFunction={() => accessChatCreateChat(user._id)}
                 />
               ))
-            )} 
+            )}
             {loadingChat && <Spinner ml="auto" d="flex" />}
           </DrawerBody>
         </DrawerContent>

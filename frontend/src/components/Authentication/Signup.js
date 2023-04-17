@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [show, setShow] = useState(false);
- 
+
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [confirmpassword, setConfirmpassword] = useState();
@@ -53,7 +53,7 @@ const Signup = () => {
         headers: { "Content-type": "application/json" },
       };
 
-      const { data } = await axios.post( "http://localhost:5003/api/user", { name, email, password}, config );
+      const { data } = await axios.post("/api/user", { name, email, password }, config);
       console.log(data);
 
       toast({
@@ -69,7 +69,7 @@ const Signup = () => {
       navigate("/chats");
 
     } catch (error) {
-      console.log(error.message);  
+      console.log(error.message);
       toast({
         title: "Error Occured!",
         description: error.response.data.message,
@@ -81,7 +81,7 @@ const Signup = () => {
       setLoading(false);
     }
   };
-    
+
 
   return (
     <VStack spacing="5px">

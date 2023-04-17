@@ -20,7 +20,7 @@ import UserBadgeItem from "../userAvatar/UserBadgeItem";
 import UserListItem from "../userAvatar/UserListItem";
 
 const GroupChatModal = ({ children }) => {
-  
+
   const [groupChatName, setGroupChatName] = useState();
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [search, setSearch] = useState("");
@@ -29,11 +29,11 @@ const GroupChatModal = ({ children }) => {
 
   const { user, chats, setChats } = useContext(ChatContext);
   const toast = useToast();
-  const { isOpen, onOpen, onClose } = useDisclosure();  
-  
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
 
   const selectedGroupHandler = (userToAdd) => {
-    
+
     if (selectedUsers.includes(userToAdd)) {
       toast({
         title: "User already added",
@@ -49,7 +49,7 @@ const GroupChatModal = ({ children }) => {
   };
 
   const handleSearch = async (query) => {
-    
+
     setSearch(query);
     if (!query) {
       return;
@@ -58,18 +58,18 @@ const GroupChatModal = ({ children }) => {
     try {
       setLoading(true);
       const config = {
-        headers: { Authorization: `Bearer ${user.token}`}
+        headers: { Authorization: `Bearer ${user.token}` }
       };
 
-      const { data } = await axios.get(`http://localhost:5003/api/user?search=${search}`, config);
+      const { data } = await axios.get(`/api/user?search=${search}`, config);
       console.log(data, 'users search response from server');
-      
+
       setLoading(false);
       setSearchResult(data);
 
     } catch (error) {
 
-      console.error(error.message);  
+      console.error(error.message);
       toast({
         title: "Error Occured!",
         description: "Failed to Load the Search Results",
@@ -100,14 +100,14 @@ const GroupChatModal = ({ children }) => {
 
     try {
       const config = {
-        headers: {/* "Content-type": "application/json", */ Authorization: `Bearer ${user.token}`}//already body jsonType
+        headers: {/* "Content-type": "application/json", */ Authorization: `Bearer ${user.token}` }//already body jsonType
       };
-      
+
       const { data } = await axios.post(
-        `http://localhost:5003/api/chat/group`,
+        `/api/chat/group`,
         {
           name: groupChatName,
-          users: JSON.stringify(selectedUsers.map((selectedUser) => selectedUser._id)), 
+          users: JSON.stringify(selectedUsers.map((selectedUser) => selectedUser._id)),
           //server side req.body accepts stringify array of user id
         },
         config
@@ -126,8 +126,8 @@ const GroupChatModal = ({ children }) => {
       });
 
     } catch (error) {
-      
-      console.error(error.message);  
+
+      console.error(error.message);
       toast({
         title: "Failed to Create the Chat!",
         description: error.response.data,

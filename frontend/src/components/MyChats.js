@@ -17,15 +17,15 @@ const MyChats = ({ fetchAgain }) => {
   //const {getSender}=useHelper();
 
   const toast = useToast();
-  
+
   const fetchChats = async () => {
     // console.log(user._id);
     try {
       const config = {
-        headers: { Authorization: `Bearer ${user.token}`}
+        headers: { Authorization: `Bearer ${user.token}` }
       };
 
-      const { data } = await axios.get("http://localhost:5003/api/chat", config);
+      const { data } = await axios.get("/api/chat", config);
       setChats(data);
       console.log(data, 'fetching all users chats in my chats');
 
@@ -98,7 +98,7 @@ const MyChats = ({ fetchAgain }) => {
         {chats ? (
           <Stack overflowY="scroll">
             {chats.map((chat, i) => (
-              
+
               <Box
                 onClick={() => setSelectedChat(chat)}
                 cursor="pointer"
