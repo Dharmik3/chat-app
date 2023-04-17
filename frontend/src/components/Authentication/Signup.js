@@ -53,7 +53,7 @@ const Signup = () => {
         headers: { "Content-type": "application/json" },
       };
 
-      const { data } = await axios.post("/api/user", { name, email, password }, config);
+      const { data } = await axios.post("https://chat-app-xkcf.onrender.com/api/user", { name, email, password }, config);
       console.log(data);
 
       toast({

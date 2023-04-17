@@ -68,7 +68,7 @@ const SideDrawer = () => {
         headers: { Authorization: `Bearer ${user.token}` }
       };
 
-      const { data } = await axios.get(`/api/user?search=${search}`, config);
+      const { data } = await axios.get(`https://chat-app-xkcf.onrender.com/api/user?search=${search}`, config);
       //console.log(data, 'searchQuerry keyword response data');
 
       setLoading(false);
@@ -102,7 +102,7 @@ const SideDrawer = () => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.post(`/api/chat`, { userId }, config);
+      const { data } = await axios.post(`https://chat-app-xkcf.onrender.com/api/chat`, { userId }, config);
 
       if (!chats.find((chat) => chat._id === data._id)) setChats([data, ...chats]);
       //already existing check clause //newly created chat above the rest

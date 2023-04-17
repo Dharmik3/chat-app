@@ -17,7 +17,7 @@ import animationData from "../animations/typing.json";
 
 import io from "socket.io-client";
 
-const ENDPOINT = "http://localhost:5003"; //development
+const ENDPOINT = "https://chat-app-xkcf.onrender.com"; //development
 
 var socket, selectedChatCompare;
 
@@ -54,7 +54,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       setLoading(true);
 
       const { data } = await axios.get(
-        `/api/message/${selectedChat._id}`,
+        `https://chat-app-xkcf.onrender.com/api/message/${selectedChat._id}`,
         config
       );
 
@@ -94,7 +94,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         setNewMessage("");
 
         const { data } = await axios.post(
-          "/api/message",
+          "https://chat-app-xkcf.onrender.com/api/message",
           {
             content: newMessage,
             chatId: selectedChat,
